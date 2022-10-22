@@ -2,6 +2,7 @@ from typing import Set, cast
 from web3.types import (  # noqa: F401
     RPCEndpoint,
 )
+import os
 
 # look at web3/middleware/cache.py for reference
 # RPC methods that will be cached inside _get_eth_simple_cache_middleware
@@ -12,7 +13,7 @@ SIMPLE_CACHE_RPC_WHITELIST = cast(
     },
 )
 
-ETH_ADDRESS = "0x0000000000000000000000000000000000000000"
+ETH_ADDRESS = os.environ['PULSE_ADDRESS'] # update this for live version
 WETH9_ADDRESS = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
 
 # see: https://chainid.network/chains/
@@ -32,6 +33,8 @@ _netid_to_name = {
     421611: "arbitrum_testnet",
     1666600000: "harmony_mainnet",
     1666700000: "harmony_testnet",
+    os.environ['PULSECHAIN_NETID']: "pulsechain",
+    os.environ['PULSECHAIN_TESTNET_NETID']: "pulsechain_testnet",
 }
 
 _factory_contract_addresses_v1 = {
@@ -56,6 +59,8 @@ _factory_contract_addresses_v2 = {
     # SushiSwap on Harmony
     "harmony_mainnet": "0xc35DADB65012eC5796536bD9864eD8773aBc74C4",
     "harmony_testnet": "0xc35DADB65012eC5796536bD9864eD8773aBc74C4",
+    "pulsechain_testnet": os.environ['PULSEX_TESTNET_FACTORY'],
+    "pulsechain": os.environ['PULSEX_FACTORY'],
 }
 
 _router_contract_addresses_v2 = {
@@ -69,6 +74,8 @@ _router_contract_addresses_v2 = {
     # SushiSwap on Harmony
     "harmony_mainnet": "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
     "harmony_testnet": "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    "pulsechain_testnet": os.environ['PULSEX_TESTNET_ROUTER'],
+    "pulsechain": os.environ['PULSEX_ROUTER'],
 }
 
 MAX_UINT_128 = (2**128) - 1
