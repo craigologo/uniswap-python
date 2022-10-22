@@ -45,5 +45,6 @@ log_cli = false  # to print logs during tests, set to true
 #log_level = "NOTSET"
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry>=0.12", "setuptools", "wheel"]
 build-backend = "poetry.masonry.api"
+# requires = ["poetry>=0.12"] - the original version
